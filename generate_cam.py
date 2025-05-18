@@ -20,11 +20,11 @@ parser.add_argument('--mask', type=str, default='None', help='If using masked in
 args = parser.parse_args()
 
 if args.mask == 'None':
-    MODEL_PATH = 'models/SymmetryNet_squeezenet_cv_pretrained/symmetry_net_fold_2_best.pth'
+    MODEL_PATH = 'model_weights/SymmetryNet_squeezenet_cv_none/symmetry_net_fold_2_best.pth'
 elif args.mask == 'Segmentation':
-    MODEL_PATH = 'models/SymmetryNet_squeezenet_cv_mask/symmetry_net_fold_3_best.pth'
+    MODEL_PATH = 'model_weights/SymmetryNet_squeezenet_cv_mask/symmetry_net_fold_3_best.pth'
 else:
-    MODEL_PATH = 'models/SymmetryNet_squeezenet_cv_lae/symmetry_net_fold_3_best.pth'
+    MODEL_PATH = 'model_weights/SymmetryNet_squeezenet_cv_lae/symmetry_net_fold_3_best.pth'
 
 print(f'Using masking strategy {args.mask}')
 print(f'Loading model from {MODEL_PATH}')
@@ -33,12 +33,12 @@ INPUT_SIZE = '224, 224'
 h, w = map(int, INPUT_SIZE.split(','))
 
 if args.mask == 'None':
-    img_dir = '../../data/SymDerm_v2/SymDerm_extended'
+    img_dir = 'datasets/HAM10000_balanced'
 elif args.mask == 'Segmentation':
-    img_dir = '../../data/SymDerm_v2/SymDerm_mask'
+    img_dir = 'datasets/HAM10000_balanced_masks'
 else:
-    img_dir = '../../data/SymDerm_v2/SymDerm_lae_mask'
-mask_dir = '../../data/SymDerm_v2/SymDerm_binary_mask'
+    img_dir = 'datasets/HAM10000_balanced_lae'
+# mask_dir = '../../data/SymDerm_v2/SymDerm_binary_mask'
 
 
 save_dir = img_dir+'_cam/'

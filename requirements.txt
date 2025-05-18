@@ -1,0 +1,13 @@
+apex==0.9.10dev
+matplotlib==3.9.4
+numpy==2.0.4
+optuna==4.2.1
+pandas==2.2.3
+Pillow==11.2.1
+scikit_learn==1.6.1
+tensorboardX==2.6.2.2
+torch==2.6.0
+torchsummary==1.5.1
+torchvision==0.21.0
+tqdm==4.67.1
+wandb==0.19.9

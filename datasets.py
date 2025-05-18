@@ -617,7 +617,15 @@ class val_classification_data(data.Dataset):
     def __getitem__(self, idx):
         image_id = self.data['image_id'][idx]
         label = self.data['labels'][idx]
-        image_path = os.path.join(self.datadir, image_id+'.png')
+        image_path_png = os.path.join(self.datadir, image_id + '.png')
+        image_path_jpg = os.path.join(self.datadir, image_id + '.jpg')
+
+        if os.path.exists(image_path_png):
+            image_path = image_path_png
+        elif os.path.exists(image_path_jpg):
+            image_path = image_path_jpg
+        else:
+            raise FileNotFoundError(f"Image file for ID {image_id} not found with .png or .jpg extension.")
         image = Image.open(image_path)
         image = image.resize((self.crop_w, self.crop_h), Image.BICUBIC)
         image = self.train_augmentation(image)
@@ -968,7 +976,16 @@ class val_classification_cam(data.Dataset):
     def __getitem__(self, idx):
         image_id = self.data['image_id'][idx]
         label = self.data['labels'][idx]
-        image_path = os.path.join(self.datadir, image_id+'.png')
+        
+        image_path_png = os.path.join(self.datadir, image_id + '.png')
+        image_path_jpg = os.path.join(self.datadir, image_id + '.jpg')
+
+        if os.path.exists(image_path_png):
+            image_path = image_path_png
+        elif os.path.exists(image_path_jpg):
+            image_path = image_path_jpg
+        else:
+            raise FileNotFoundError(f"Image file for ID {image_id} not found with .png or .jpg extension.")
         cam_path = os.path.join(self.camdir, image_id+'.npy')
         cam = np.load(cam_path)
         image = Image.open(image_path)

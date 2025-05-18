@@ -12,7 +12,7 @@ from tqdm import tqdm
 import csv
 import cv2
 
-MODEL_PATH = 'models/iteration_1/Segmentation_Deeplab_1/CoarseSN_e61.pth'  
+MODEL_PATH = 'model_weights/Segmentation_Deeplab_1/CoarseSN_e61.pth'  
 INPUT_SIZE = '256, 256'
 NUM_CLASSES = 2
 BATCH_SIZE = 1
@@ -249,9 +249,12 @@ def main():
     symderm_path = '../../data/SymDerm_v2/SymDerm_extended'
     root_path = '../../data/ISIC_2019'
     symderm_outpath = '../../data/SymDerm_v2/SymDerm_lae_mask'
-    outpath = '../../data/ISIC_2019_lae'
+    # outpath = '../../data/ISIC_2019_lae'
 
-    symderm_loader = data.DataLoader(run_segmentation_data(root_path, crop_size=(w, h)), batch_size=1, shuffle=False,
+    input_path = 'datasets/HAM10000_balanced/'
+    outpath = 'datasets/HAM10000_balanced_lae'
+
+    symderm_loader = data.DataLoader(run_segmentation_data(input_path, crop_size=(w, h)), batch_size=1, shuffle=False,
                                  num_workers=8, pin_memory=True)
 
     # generate_masks(testloader, model, mask_path)

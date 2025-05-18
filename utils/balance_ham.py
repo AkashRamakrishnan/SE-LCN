@@ -6,8 +6,8 @@ from sklearn.utils import resample
 import random
 from tqdm import tqdm
 
-current_dir = '../../../data/HAM10000_inpaint/'
-new_dir = '../../../data/HAM10000_balanced/'
+current_dir = '../datasets/HAM10000_inpaint/'
+new_dir = '../datasets/HAM10000_balanced/'
 
 if not os.path.exists(new_dir):
     os.makedirs(new_dir)
@@ -78,4 +78,4 @@ for col in counts.index:
 # Combine back to a single dataframe if necessary
 balanced_data = pd.concat(tables.values(), ignore_index=True)
 
-balanced_data.to_csv('../data_files/HAM10000_metadata_balanced.csv')
+balanced_data.to_csv('../data_files/HAM10000_metadata_balanced_2.csv')
